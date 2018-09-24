@@ -10,6 +10,8 @@
 
 Pausing watch mode of [`jest`](https://jestjs.io/) when you want it to.
 
+Requires `jest@23+`.
+
 ## Usage
 
 To use `jest-watch-suspend`,

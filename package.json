@@ -10,7 +10,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.base.json",
     "coverage": "jest --coverage",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "dc": "npm run dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "test": "jest",
     "verify-ci": "npm run lint && npm run build && jest --coverage --config jest.config.ci.json && npm run dependency-check",
@@ -26,6 +27,9 @@
     "url": "https://github.com/unional/jest-watch-suspend/issues"
   },
   "homepage": "https://github.com/unional/jest-watch-suspend",
+  "peerDependencies": {
+    "jest": ">=23"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.10.3",
