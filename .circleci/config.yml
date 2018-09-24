@@ -7,6 +7,9 @@ workflows:
       - node9
       - node8
       - release:
+          filters:
+              branches:
+                  only: master
           requires:
             - node-latest
             - node9
