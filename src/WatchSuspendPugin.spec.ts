@@ -83,32 +83,32 @@ test('if suspended, when test complete will print message', () => {
   expect(called).toBe(true)
 })
 
-test('if suspended, when test complete will print message when in verbose', () => {
+test('if suspended, when test complete will print message when in verbose', async () => {
   const plugin = new WatchSuspendPlugin({ config: {} })
   const th = testHarness()
   plugin.apply(th.jestHooks)
   let called = false
   plugin.log = () => called = true
-  plugin.run({ verbose: true })
+  await plugin.run({ verbose: true })
   th.onTestRunCompleteCallback()
 
   expect(called).toBe(true)
 })
 
-test('triggering will flip suspend or resume', () => {
+test('triggering will flip suspend or resume', async () => {
   const plugin = new WatchSuspendPlugin({ config: {} })
   plugin.log = () => { }
-  plugin.run({})
+  await plugin.run({})
   expect(plugin.suspend).toBe(true)
-  plugin.run({})
+  await plugin.run({})
   expect(plugin.suspend).toBe(false)
 })
 
-test('trigger suspend will print message', () => {
+test('trigger suspend will print message', async () => {
   const plugin = new WatchSuspendPlugin({ config: {} })
   let called = false
   plugin.log = () => called = true
-  plugin.run({})
+  await plugin.run({})
   expect(called).toBe(true)
 })
 
