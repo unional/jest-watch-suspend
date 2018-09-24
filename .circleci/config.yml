@@ -27,11 +27,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: npm install
+      - run: npm install --no-save jest-junit
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run verify
+      - run: npm run verify-ci
+      - store_test_results:
+          path: reports/junit
   node9:
     docker:
       - image: 'circleci/node:9'
@@ -44,11 +47,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: npm install
+      - run: npm install --no-save jest-junit
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run verify
+      - run: npm run verify-ci
+      - store_test_results:
+          path: reports/junit
   node8:
     docker:
       - image: 'circleci/node:8'
@@ -61,11 +67,14 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
       - run: npm install
+      - run: npm install --no-save jest-junit
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run verify
+      - run: npm run verify-ci
+      - store_test_results:
+          path: reports/junit
   release:
     docker:
       - image: 'circleci/node:10'

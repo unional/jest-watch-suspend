@@ -1,0 +1,27 @@
+{
+  "preset": "ts-jest",
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "testEnvironment": "node",
+  "watchPlugins": [
+    [
+      "<rootDir>/dist/index.js",
+      {
+        "suspend-on-start": true
+      }
+    ],
+    [
+      "jest-watch-toggle-config",
+      {
+        "setting": "verbose"
+      }
+    ],
+    [
+      "jest-watch-toggle-config",
+      {
+        "setting": "collectCoverage"
+      }
+    ]
+  ]
+}
