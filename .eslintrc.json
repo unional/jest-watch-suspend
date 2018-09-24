@@ -1,0 +1,6 @@
+{
+  "extends": "plugin:unional/latest",
+  "env": {
+    "node": true
+  }
+}
