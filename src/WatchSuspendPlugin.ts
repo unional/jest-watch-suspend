@@ -1,5 +1,9 @@
+import chalk from 'chalk'
+let firstRun = true
 export class WatchSuspendPlugin {
-  firstRun = true
+  globalConfig: jest.GlobalConfig = {} as any
+  firstRun = firstRun
+  log = console.info
   config: { 'suspend-on-start': boolean, key: string, prompt: string }
   suspend: boolean
   constructor({ config }) {
@@ -10,14 +14,18 @@ export class WatchSuspendPlugin {
   apply(jestHooks) {
     jestHooks.shouldRunTestSuite(() => {
       if (this.firstRun) {
-        this.firstRun = false
-        return !this.config['suspend-on-start']
+        firstRun = this.firstRun = false
+        if (this.config['suspend-on-start']) {
+          this.log(chalk.bold('\nTest is suspended on start.'))
+          return false
+        }
+        return true
       }
       return !this.suspend
     })
     jestHooks.onTestRunComplete(() => {
       if (this.suspend) {
-        console.info(`Test is suspended.`)
+        this.log(this.globalConfig.verbose ? chalk.bold(`Test is suspended.`) : chalk.gray(`Test is suspended.`))
       }
     })
   }
@@ -31,10 +39,11 @@ export class WatchSuspendPlugin {
   }
 
   // Executed when the key from `getUsageInfo` is input
-  run() {
+  run(globalConfig) {
+    this.globalConfig = globalConfig
     this.suspend = !this.suspend
     if (this.suspend) {
-      console.info('\nTest is suspended.')
+      this.log(chalk.bold('\nTest is suspended.'))
     }
     return Promise.resolve(!this.suspend)
   }

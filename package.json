@@ -2,10 +2,10 @@
   "name": "jest-watch-suspend",
   "description": "Suspend watch mode",
   "version": "0.0.0-development",
-  "main": "dist-es5/index.js",
-  "typings": "dist-es5/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "files": [
-    "dist-es5"
+    "dist"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.base.json",
@@ -13,6 +13,7 @@
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "test": "jest",
+    "verify-ci": "npm run lint && npm run build && jest --coverage --config jest.config.ci.json && npm run dependency-check",
     "verify": "npm run lint && npm run build && npm run coverage && npm run dependency-check",
     "watch": "tsc && jest --watch"
   },
@@ -25,37 +26,18 @@
     "url": "https://github.com/unional/jest-watch-suspend/issues"
   },
   "homepage": "https://github.com/unional/jest-watch-suspend",
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "testEnvironment": "node",
-    "testRegex": ".*.spec.ts$",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "watchPlugins": [
-      [
-        "<rootDir>/dist/index.js",
-        {
-          "suspend-on-start": true
-        }
-      ]
-    ]
-  },
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.10.3",
     "dependency-check": "^3.2.1",
     "jest": "^23.6.0",
+    "jest-watch-toggle-config": "^1.0.2",
     "ts-jest": "^23.10.1",
     "tslint": "^5.11.0",
     "tslint-config-unional": "^0.9.6",
     "typescript": "^3.0.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
 }
