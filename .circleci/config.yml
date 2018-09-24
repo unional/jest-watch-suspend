@@ -33,6 +33,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run verify-ci
+      - run: npx codecov
       - store_test_results:
           path: reports/junit
   node9:
@@ -55,7 +56,6 @@ jobs:
       - run: npm run verify-ci
       - store_test_results:
           path: reports/junit
-      - run: npx codecov
   node8:
     docker:
       - image: 'circleci/node:8'
