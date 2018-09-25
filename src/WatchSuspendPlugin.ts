@@ -8,6 +8,7 @@ export class WatchSuspendPlugin {
   suspend: boolean
   constructor({ config }) {
     this.config = { key: 's', prompt: 'suspend watch mode', ...config }
+    this.suspend = this.config['suspend-on-start'];
   }
 
   // Add hooks to Jest lifecycle events
