@@ -16,9 +16,9 @@ export class WatchSuspendPlugin {
     jestHooks.shouldRunTestSuite(() => {
       if (this.firstRun) {
         firstRun = this.firstRun = false
-        if (this.config['suspend-on-start']) {
-          this.log(chalk.bold('\nTest is suspended on start.'))
-          return false
+        if (this.suspend) {
+          this.log(chalk.bold('\nTest is suspended on start.'))          
+          return this.suspend = false
         }
         return true
       }
