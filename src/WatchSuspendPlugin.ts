@@ -18,7 +18,8 @@ export class WatchSuspendPlugin {
         firstRun = this.firstRun = false
         if (this.suspend) {
           this.log(chalk.bold('\nTest is suspended on start.'))
-          return this.suspend = false
+          this.suspend = false
+          return false
         }
         return true
       }
