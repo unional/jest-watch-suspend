@@ -8,6 +8,7 @@ export class WatchSuspendPlugin {
   suspend: boolean
   constructor({ config }) {
     this.config = { key: 's', prompt: 'suspend watch mode', ...config }
+    this.suspend = this.config['suspend-on-start'];
   }
 
   // Add hooks to Jest lifecycle events
@@ -15,8 +16,9 @@ export class WatchSuspendPlugin {
     jestHooks.shouldRunTestSuite(() => {
       if (this.firstRun) {
         firstRun = this.firstRun = false
-        if (this.config['suspend-on-start']) {
+        if (this.suspend) {
           this.log(chalk.bold('\nTest is suspended on start.'))
+          this.suspend = false
           return false
         }
         return true
