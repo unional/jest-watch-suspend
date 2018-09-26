@@ -1,8 +1,6 @@
 import chalk from 'chalk'
-let firstRun = true
 export class WatchSuspendPlugin {
   globalConfig: jest.GlobalConfig = {} as any
-  firstRun = firstRun
   log = console.info
   config: { 'suspend-on-start': boolean, key: string, prompt: string }
   suspend: boolean
@@ -14,15 +12,6 @@ export class WatchSuspendPlugin {
   // Add hooks to Jest lifecycle events
   apply(jestHooks) {
     jestHooks.shouldRunTestSuite(() => {
-      if (this.firstRun) {
-        firstRun = this.firstRun = false
-        if (this.suspend) {
-          this.log(chalk.bold('\nTest is suspended on start.'))
-          this.suspend = false
-          return false
-        }
-        return true
-      }
       return !this.suspend
     })
     jestHooks.onTestRunComplete(() => {
