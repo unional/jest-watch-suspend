@@ -16,7 +16,7 @@
     "test": "jest",
     "verify-ci": "npm run lint && npm run build && jest --coverage --config jest.config.ci.json && npm run dependency-check",
     "verify": "npm run lint && npm run build && npm run coverage && npm run dependency-check",
-    "watch": "tsc && jest --watch"
+    "watch": "tsc && jest --watch --config jest.config.json"
   },
   "license": "MIT",
   "repository": {

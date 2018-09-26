@@ -29,6 +29,20 @@ add it to the `watchPlugins` section of the Jest configuration:
 }
 ```
 
+## Use Cases
+
+Suspend on start:
+
+- (suspended) -> `p+<filter>` | `t+<filter>` -> `s` (resume)
+
+Setup filters before running tests:
+
+- `s` (suspend) -> `p+<filter>` -> `t+<filter>` -> `s` (resume)
+
+Multiple changes:
+
+- `s` (suspend) -> multiple changes and file saves -> `s` (resume)
+
 [npm-image]: https://img.shields.io/npm/v/jest-watch-suspend.svg?style=flat
 [npm-url]: https://npmjs.org/package/jest-watch-suspend
 [downloads-image]: https://img.shields.io/npm/dm/jest-watch-suspend.svg?style=flat

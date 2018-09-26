@@ -10,53 +10,41 @@ test('test will run on start by default', () => {
 
 test('suspend on start = false will run test on start', () => {
   const plugin = new WatchSuspendPlugin({ config: { 'suspend-on-start': false } })
-  plugin.firstRun = true
+
   const th = testHarness()
   plugin.apply(th.jestHooks)
 
   expect(th.shouldRunTestSuiteCallback()).toBe(true)
 })
 
-test('suspend on start will stop the very first run', () => {
+test('suspend on start will put watch in suspened state', () => {
   const plugin = new WatchSuspendPlugin({ config: { 'suspend-on-start': true } })
-  plugin.firstRun = true
   const th = testHarness()
   plugin.apply(th.jestHooks)
-  plugin.log = () => { }
 
+  expect(plugin.suspend).toBe(true)
+  expect(th.shouldRunTestSuiteCallback()).toBe(false)
   expect(th.shouldRunTestSuiteCallback()).toBe(false)
 })
 
-test('suspend on start will should message', () => {
+test('suspend on start will show resume in usageInfo', () => {
   const plugin = new WatchSuspendPlugin({ config: { 'suspend-on-start': true } })
-  plugin.firstRun = true
   const th = testHarness()
   plugin.apply(th.jestHooks)
-  let called = false
-  plugin.log = () => called = true
+  plugin.log = () => {}
   expect(th.shouldRunTestSuiteCallback()).toBe(false)
+  const actual = plugin.getUsageInfo()
+  expect(actual.prompt.match(/resume/))
 })
 
-test('suspend on start will not affect subsequence run', () => {
-  const plugin = new WatchSuspendPlugin({ config: { 'suspend-on-start': true } })
-  plugin.firstRun = true
-  const th = testHarness()
-  plugin.apply(th.jestHooks)
-  plugin.log = () => { }
-
-  expect(th.shouldRunTestSuiteCallback()).toBe(false)
-  expect(th.shouldRunTestSuiteCallback()).toBe(true)
-  expect(th.shouldRunTestSuiteCallback()).toBe(true)
-})
-
-test('usage info default to s and "suspend watch mode"', () => {
+test('usageInfo default to s and "suspend watch mode"', () => {
   const plugin = new WatchSuspendPlugin({ config: {} })
   const actual = plugin.getUsageInfo()
   expect(actual.key).toBe('s')
   expect(actual.prompt).toBe('suspend watch mode')
 })
 
-test('usage info can be customized', () => {
+test('usageInfo can be customized', () => {
   const plugin = new WatchSuspendPlugin({ config: { key: 'x', prompt: 'pp' } })
   const actual = plugin.getUsageInfo()
   expect(actual.key).toBe('x')
