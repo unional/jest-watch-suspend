@@ -33,15 +33,15 @@ add it to the `watchPlugins` section of the Jest configuration:
 
 Suspend on start:
 
-- (suspended) -> `[p] + <filter>` | `[t] + <filter>` -> [`s`] (resume)
+- (suspended) -> `[p] + <filter>` | `[t] + <filter>` -> `[s]` (resume)
 
 Setup both path and name filter before running tests:
 
-- [`s`] (suspend) -> `[p] + <filter>` -> `[t] + <filter>` -> [`s`] (resume)
+- `[s]` (suspend) -> `[p] + <filter>` -> `[t] + <filter>` -> `[s]` (resume)
 
 Change multiple files before running tests:
 
-- [`s`] (suspend) -> multiple changes and file saves -> [`s`] (resume)
+- `[s]` (suspend) -> multiple changes and file saves -> `[s]` (resume)
 
 [npm-image]: https://img.shields.io/npm/v/jest-watch-suspend.svg?style=flat
 [npm-url]: https://npmjs.org/package/jest-watch-suspend
