@@ -27,6 +27,12 @@
     "url": "https://github.com/unional/jest-watch-suspend/issues"
   },
   "homepage": "https://github.com/unional/jest-watch-suspend",
+  "keywords": [
+    "jest",
+    "jest-watch-plugins",
+    "testing",
+    "tooling"
+  ],
   "peerDependencies": {
     "jest": ">=23"
   },
