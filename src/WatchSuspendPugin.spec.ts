@@ -31,7 +31,7 @@ test('suspend on start will show resume in usageInfo', () => {
   const plugin = new WatchSuspendPlugin({ config: { 'suspend-on-start': true } })
   const th = testHarness()
   plugin.apply(th.jestHooks)
-  plugin.log = () => {}
+  plugin.log = () => { }
   expect(th.shouldRunTestSuiteCallback()).toBe(false)
   const actual = plugin.getUsageInfo()
   expect(actual.prompt.match(/resume/))

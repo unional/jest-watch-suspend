@@ -1,11 +1,19 @@
 import chalk from 'chalk'
+import { unpartial } from 'unpartial'
+export interface Config {
+  'suspend-on-start': boolean,
+  key: string,
+  prompt: string
+}
+export type JestGlobalConfigUsed = Pick<jest.GlobalConfig, 'verbose'>
+
 export class WatchSuspendPlugin {
-  globalConfig: jest.GlobalConfig = {} as any
+  globalConfig: Partial<JestGlobalConfigUsed> = {}
   log = console.info
-  config: { 'suspend-on-start': boolean, key: string, prompt: string }
+  config: Config
   suspend: boolean
-  constructor({ config }) {
-    this.config = { key: 's', prompt: 'suspend watch mode', ...config }
+  constructor({ config }: { config: Partial<Config> }) {
+    this.config = unpartial({ 'suspend-on-start': false, key: 's', prompt: 'suspend watch mode' }, config)
     this.suspend = this.config['suspend-on-start'];
   }
 
@@ -30,7 +38,7 @@ export class WatchSuspendPlugin {
   }
 
   // Executed when the key from `getUsageInfo` is input
-  run(globalConfig) {
+  run(globalConfig: Partial<JestGlobalConfigUsed>) {
     this.globalConfig = globalConfig
     this.suspend = !this.suspend
     if (this.suspend) {

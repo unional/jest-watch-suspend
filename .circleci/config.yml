@@ -8,8 +8,8 @@ workflows:
       - node8
       - release:
           filters:
-              branches:
-                  only: master
+            branches:
+              only: master
           requires:
             - node-latest
             - node9
@@ -17,21 +17,23 @@ workflows:
 jobs:
   node-latest:
     docker:
-      - image: 'circleci/node:10'
+      - image: circleci/node:10
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: npm install
-      - run: npm install --no-save jest-junit
+          name: Restore node_modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
       - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run verify-ci
       - run: npx codecov
       - store_test_results:
@@ -41,18 +43,21 @@ jobs:
       - image: 'circleci/node:9'
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: npm install
-      - run: npm install --no-save jest-junit codecov
+          name: Restore node_modules cache
+          key: node_modules-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              sudo npm install -g npm@$NPM_VERSION
+              npm ci
+            fi
       - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run verify-ci
       - store_test_results:
           path: reports/junit
@@ -61,37 +66,43 @@ jobs:
       - image: 'circleci/node:8'
     steps:
       - checkout
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: npm install
-      - run: npm install --no-save jest-junit
+          name: Restore node_modules cache
+          key: node_modules-{{ checksum "package.json" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              sudo npm install -g npm@$NPM_VERSION
+              npm ci
+            fi
       - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run verify-ci
       - store_test_results:
           path: reports/junit
   release:
     docker:
-      - image: 'circleci/node:10'
+      - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: npm install
-      - run: npm install --no-save semantic-release greenkeeper-lockfile
+          name: Restore node_modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci
+            fi
       - save_cache:
+          name: Save node modules cache
+          key: node_modules-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: update greenkeeper lockfile
           command: ./node_modules/.bin/greenkeeper-lockfile-update
