@@ -18,13 +18,13 @@ export class WatchSuspendPlugin {
   }
 
   // Add hooks to Jest lifecycle events
-  apply(jestHooks) {
+  apply(jestHooks: any) {
     jestHooks.shouldRunTestSuite(() => {
       return !this.suspend
     })
     jestHooks.onTestRunComplete(() => {
       if (this.suspend) {
-        this.log(this.globalConfig.verbose ? chalk.bold(`Test is suspended.`) : chalk.gray(`Test is suspended.`))
+        this.log(chalk.bold(`Test is suspended.`))
       }
     })
   }

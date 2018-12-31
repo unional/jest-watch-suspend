@@ -1,7 +1,7 @@
 {
   "name": "jest-watch-suspend",
-  "version": "0.0.0-development",
   "description": "Suspend watch mode",
+  "version": "0.0.0-development",
   "keywords": [
     "jest",
     "jest-watch-plugins",
@@ -17,41 +17,32 @@
     "url": "https://github.com/unional/jest-watch-suspend.git"
   },
   "license": "MIT",
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
+  },
   "files": [
-    "dist"
+    "lib"
   ],
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.base.json",
-    "coverage": "jest --coverage",
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rimraf lib",
     "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
+    "lint": "tslint -p tsconfig.json",
     "test": "jest",
-    "verify": "npm run lint && npm run build && npm run coverage && npm run dependency-check",
-    "verify-ci": "npm run lint && npm run build && jest --coverage --config jest.config.ci.json && npm run dependency-check",
-    "watch": "tsc && jest --watch"
+    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage",
+    "watch": "jest --watch"
   },
   "dependencies": {
     "chalk": "^2.4.1",
     "unpartial": "^0.4.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.5",
-    "@types/node": "^10.12.0",
-    "codecov": "^3.1.0",
-    "dependency-check": "^3.2.1",
-    "greenkeeper-lockfile": "^1.15.1",
-    "jest": "^23.6.0",
-    "jest-audio-reporter": "^2.0.1",
-    "jest-junit": "^5.2.0",
-    "jest-watch-toggle-config": "^1.0.2",
-    "semantic-release": "^15.10.5",
-    "ts-jest": "^23.10.4",
-    "tslint": "^5.11.0",
-    "tslint-config-unional": "^0.10.0",
-    "typescript": "^3.1.3"
+    "@unional/devpkg-node": "^1.1.6",
+    "assertron": "^6.0.0"
   },
   "peerDependencies": {
     "jest": ">=23"
