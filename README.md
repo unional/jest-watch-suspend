@@ -53,8 +53,8 @@ Change multiple files before running tests:
 [circleci-url]: https://circleci.com/gh/unional/jest-watch-suspend/tree/master
 [codecov-image]: https://codecov.io/gh/unional/jest-watch-suspend/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/jest-watch-suspend
-[coveralls-image]: https://coveralls.io/repos/github/unional/jest-watch-suspend/badge.svg
-[coveralls-url]: https://coveralls.io/github/unional/jest-watch-suspend
+[coveralls-image]: https://coveralls.io/repos/github/unional/jest-watch-suspend/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/unional/jest-watch-suspend?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/jest-watch-suspend.svg?style=flat
 [downloads-url]: https://npmjs.org/package/jest-watch-suspend
 [greenkeeper-image]: https://badges.greenkeeper.io/unional/jest-watch-suspend.svg
