@@ -2,7 +2,7 @@ const common = require('@unional/devpkg-node/simple/config/jest.common')
 module.exports = Object.assign(common, {
   'watchPlugins': [
     [
-      '<rootDir>/dist/index.js',
+      '<rootDir>/lib/index.js',
       {
         'suspend-on-start': true
       }
