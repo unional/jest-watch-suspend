@@ -1,4 +1,4 @@
-import { WatchSuspendPlugin } from './WatchSuspendPlugin';
+import WatchSuspendPlugin from '.';
 
 test('test will run on start by default', () => {
   const plugin = new WatchSuspendPlugin({ config: {} })
@@ -112,8 +112,8 @@ function testHarness() {
     shouldRunTestSuiteCallback() { },
     onTestRunCompleteCallback() { },
     jestHooks: {
-      shouldRunTestSuite(fn) { th.shouldRunTestSuiteCallback = fn },
-      onTestRunComplete(fn) { th.onTestRunCompleteCallback = fn }
+      shouldRunTestSuite(fn: any) { th.shouldRunTestSuiteCallback = fn },
+      onTestRunComplete(fn: any) { th.onTestRunCompleteCallback = fn }
     }
   }
   return th

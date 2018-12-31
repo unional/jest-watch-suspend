@@ -1,5 +1,3 @@
-sudo: false
-dist: trusty
 language: node_js
 cache:
   directories:
@@ -7,6 +5,7 @@ cache:
 notifications:
   email: false
 node_js:
+  - '11'
   - '10'
   - '9'
   - '8'
@@ -15,22 +14,8 @@ branches:
   only:
     - master
     - /^greenkeeper.*$/
-
-before_install:
-  - ./scripts/run-on-node-version.sh 10 "npm install -g greenkeeper-lockfile@1"
-
-before_script:
-  - ./scripts/run-on-node-version.sh 10 "greenkeeper-lockfile-update"
-
 script:
+  - npm i --no-save jest-junit
   - npm run verify
-
-after_success:
-  - ./scripts/run-on-node-version.sh 10 "npm install -g coveralls codecov"
-  - npm install -g travis-deploy-once
-  - travis-deploy-once "npx semantic-release"
-  - ./scripts/run-on-node-version.sh 10 "cat ./coverage/lcov.info | coveralls"
-  - ./scripts/run-on-node-version.sh 10 "codecov"
-
-after_script:
-  - ./scripts/run-on-node-version.sh 10 "greenkeeper-lockfile-upload"
+  - ./scripts/run-on-node-version.sh 11 "npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage"
+  - ./scripts/run-on-node-version.sh 11 "npm install -g coveralls && cat ./coverage/lcov.info | coveralls"

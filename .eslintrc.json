@@ -1,6 +1,8 @@
 {
-  "extends": "plugin:unional/latest",
+  "extends": "plugin:harmony/latest",
+  "root": true,
   "env": {
-    "node": true
+    "node": true,
+    "es6": true
   }
 }

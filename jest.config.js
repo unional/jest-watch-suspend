@@ -1,36 +1,23 @@
-module.exports = {
-  "preset": "ts-jest",
-  "globals": {
-    "ts-jest": {
-      "diagnostics": false
-    }
-  },
-  "reporters": [
-    "default",
-    "jest-audio-reporter"
-  ],
-  "roots": [
-    "<rootDir>/src"
-  ],
-  "testEnvironment": "node",
-  "watchPlugins": [
+const common = require('@unional/devpkg-node/simple/config/jest.common')
+module.exports = Object.assign(common, {
+  'watchPlugins': [
     [
-      "<rootDir>/dist/index.js",
+      '<rootDir>/dist/index.js',
       {
-        "suspend-on-start": true
+        'suspend-on-start': true
       }
     ],
     [
-      "jest-watch-toggle-config",
+      'jest-watch-toggle-config',
       {
-        "setting": "verbose"
+        'setting': 'verbose'
       }
     ],
     [
-      "jest-watch-toggle-config",
+      'jest-watch-toggle-config',
       {
-        "setting": "collectCoverage"
+        'setting': 'collectCoverage'
       }
     ]
   ]
-}
+})
