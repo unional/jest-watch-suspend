@@ -27,9 +27,19 @@ add it to the `watchPlugins` section of the Jest configuration:
 {
   "jest": {
     "watchPlugins": [
+      // default
       "jest-watch-suspend",
-      ["jest-watch-suspend", { "key": "s", "prompt": "suspend watch mode" }]
-      ["jest-watch-suspend", { "suspend-on-start": true }]
+      // configure
+      [
+        "jest-watch-suspend", {
+          // override key press
+          "key": "s",
+          // override prompt
+          "prompt": "suspend watch mode",
+          // starts in suspend mode
+          "suspend-on-start": true
+        }
+      ]
     ]
   }
 }
