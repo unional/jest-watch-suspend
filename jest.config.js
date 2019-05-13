@@ -7,6 +7,8 @@ module.exports = Object.assign(common, {
         'suspend-on-start': true
       }
     ],
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
     [
       'jest-watch-toggle-config',
       {
