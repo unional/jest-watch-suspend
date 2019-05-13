@@ -37,12 +37,13 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "unpartial": "^0.4.1"
+    "chalk": "^2.4.2",
+    "unpartial": "^0.6.1"
   },
   "devDependencies": {
-    "@unional/devpkg-node": "^1.1.6",
-    "assertron": "^6.0.0"
+    "@unional/devpkg-node": "^1.3.0",
+    "assertron": "^7.0.1",
+    "jest": "^24.8.0"
   },
   "peerDependencies": {
     "jest": ">=23"
