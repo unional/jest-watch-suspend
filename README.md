@@ -49,15 +49,19 @@ add it to the `watchPlugins` section of the Jest configuration:
 
 Suspend on start:
 
-- (suspended) -> `[p] + <filter>` | `[t] + <filter>` -> `[s]` (resume)
+- (suspended) ➣ `[p] + <filter>` | `[t] + <filter>` ➣ `[s]` (resume)
 
 Setup both path and name filter before running tests:
 
-- `[s]` (suspend) -> `[p] + <filter>` -> `[t] + <filter>` -> `[s]` (resume)
+- `[s]` (suspend) ➣ `[p] + <filter>` & `[t] + <filter>` ➣ `[s]` (resume)
 
 Change multiple files before running tests:
 
-- `[s]` (suspend) -> multiple changes and file saves -> `[s]` (resume)
+- `[s]` (suspend) ➣ multiple changes and file saves ➣ `[s]` (resume)
+
+Run code coverage after running some `test.only()` tests:
+
+- `[s]` (suspend) ➣ change `test.only()` back to `test()` & `[e]` (with `jest-watch-toggle-config`) ➣ `[s]` (resume)
 
 [circleci-image]: https://circleci.com/gh/unional/jest-watch-suspend/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/jest-watch-suspend/tree/master
