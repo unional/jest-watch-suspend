@@ -31,14 +31,13 @@
     "clean": "rimraf lib",
     "codecov": "codecov",
     "coverage": "jest --coverage",
-    "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
+    "dc": "yarn depcheck",
+    "depcheck": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
     "lint": "eslint --ext=js,ts .",
     "nuke": "yarn clean && rimraf node_modules",
     "semantic-release": "semantic-release",
     "test": "jest",
-    "verify": "yarn lint && yarn build && yarn dependency-check && jest --coverage",
-    "verify:ci": "yarn lint && yarn build && yarn dc && yarn coverage --maxWorkers=2",
+    "verify": "yarn lint && yarn build && yarn dc && jest --coverage",
     "watch": "jest --watch"
   },
   "husky": {
