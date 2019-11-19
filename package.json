@@ -1,7 +1,7 @@
 {
   "name": "jest-watch-suspend",
-  "description": "Suspend watch mode",
   "version": "0.0.0-development",
+  "description": "Suspend watch mode",
   "keywords": [
     "jest",
     "jest-watch-plugins",
@@ -29,21 +29,36 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "clean": "rimraf lib",
-    "dc": "npm run dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json",
+    "codecov": "codecov",
+    "coverage": "jest --coverage",
+    "dc": "yarn depcheck",
+    "depcheck": "dependency-check . --unused --no-dev -i jest && dependency-check . --missing --no-dev",
+    "lint": "eslint --ext=js,ts .",
+    "nuke": "yarn clean && rimraf node_modules",
+    "semantic-release": "semantic-release",
     "test": "jest",
-    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage",
+    "verify": "yarn lint && yarn build && yarn dc && jest --coverage",
     "watch": "jest --watch"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
-    "chalk": "^2.4.2",
-    "unpartial": "^0.6.1"
+    "chalk": "^3.0.0",
+    "unpartial": "^0.6.3"
   },
   "devDependencies": {
-    "@unional/devpkg-node": "^1.3.0",
-    "assertron": "^7.0.1",
-    "jest": "^24.8.0"
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@unional/devpkg-node": "^1.4.2",
+    "assertron": "^7.1.2",
+    "codecov": "^3.6.1",
+    "commitlint-circle": "^1.0.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "semantic-release": "^15.13.31"
   },
   "peerDependencies": {
     "jest": ">=23"

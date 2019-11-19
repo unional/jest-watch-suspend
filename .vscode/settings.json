@@ -1,5 +1,5 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.enable": true,
   "json.schemas": [
     {
       "fileMatch": [
@@ -7,5 +7,6 @@
       ],
       "url": "http://json.schemastore.org/tsconfig"
     }
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
