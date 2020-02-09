@@ -52,7 +52,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@unional/devpkg-node": "^1.4.2",
+    "@unional/devpkg-node": "1.4.2",
     "assertron": "^7.1.2",
     "codecov": "^3.6.1",
     "commitlint-circle": "^1.0.0",
