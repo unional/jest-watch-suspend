@@ -58,7 +58,7 @@
     "commitlint-circle": "^1.0.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
-    "semantic-release": "^15.13.31"
+    "semantic-release": "^17.0.7"
   },
   "peerDependencies": {
     "jest": ">=23"
