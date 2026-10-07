@@ -54,7 +54,7 @@
 		"watch": "jest --watch"
 	},
 	"dependencies": {
-		"chalk": "^4.1.2",
+		"chalk": "^6.0.0",
 		"unpartial": "^1.0.6"
 	},
 	"devDependencies": {
