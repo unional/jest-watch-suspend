@@ -78,7 +78,7 @@
 	"peerDependencies": {
 		"jest": ">=28"
 	},
-	"packageManager": "pnpm@12.3.4",
+	"packageManager": "pnpm@12.11.1",
 	"engines": {
 		"node": "^20.19.0 || ^22.13.0 || >=24"
 	}
